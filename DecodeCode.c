@@ -17,7 +17,7 @@ mipsinstruction decode(int value)
 	//It's an R-Type
 	if(posCheck == 1){
 	  instr.funct = value & (0x0000003F); 	   //should be the last 6 bits  
-	  instr.immediate = ((((value & (0x0000FFFF))^(0x0000FFFF))+1) << 31) >> 31; //get the 15 bits, do a two complement's to get the number, sll all the way to the left, and then all the way back to force it to make the number negative   
+	  instr.immediate = ((((value & (0x0000FFFF))^(0x0000FFFF))+1) << 31) >> 31; //get the 16 bits, do a two complement's to get the number, sll all the way to the left, and then all the way back to force it to make the number negative   
 	  instr.rd = value & (0x0000F800) >> 11; 	   //should be the next 5 bits 
 	  instr.rt = (value & (0x001F0000)) >> 16;         //should be the next 5 bits 
 	  instr.rs = (value & (0x03E00000)) >> 21;	   //should be the next 5 bits 
@@ -30,8 +30,8 @@ mipsinstruction decode(int value)
 	else if (posCheck == 0){
 	 //printf("sanity check");
 	 instr.funct = value & (0x0000003F);      
-         instr.immediate = value&(0x0000FFFF); //get 15 bits 
-	 instr.rd = (value & (0x0000F800)) >> 11; //there is no rd, setting to zero 
+         instr.immediate = value&(0x0000FFFF); //get the 16 bits 
+	 instr.rd = (value & (0x0000F800)) >> 11; // should be the next 5 bits 
 	 instr.rt = (value & (0x001F0000)) >> 16 ; //should be the next 5 bits  
 	 instr.rs = (value & (0x03E00000)) >> 21 ;        //should be the next 5 bits 
 	 instr.opcode = (value & (0xFC000000)) >> 26 ;    //should be the next 6 bits
