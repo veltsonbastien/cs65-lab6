@@ -174,28 +174,9 @@ PrintReverse:
 
 
 setCounter:
-	li $t0, 0
-	move $s2, $t0 
+	move $s2, $zero 
 
 PrintReverse_loop:
-
-
-#	li $v0, 1
-#	move $a0, $t0
-#	syscall 
-
-#	li $v0, 4
-#	la $a0, newline
-#	syscall
-#
-	
-#	li $v0, 1
-#	move $a0, $s1
-#	syscall
-
-#	li $v0, 4
-#	la $a0, newline
-#	syscall 
 
 	#do a condition check 
 	bge $s2, $s1, PrintReverse_exit
